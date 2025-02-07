@@ -92,6 +92,7 @@ def map_rep2chn(rep, decimal):
 	chn['No Beep'] = 'No'
 	chn['No Eco'] = 'No'
 	chn['APRS'] = 'No'
+	chn['Use Location'] = 'No'
 #	chn[''] = rep['State ID']
 #	chn[''] = rep['Rptr ID']
 #	chn[''] = rep['Landmark']
@@ -145,7 +146,7 @@ def map_rep2chn(rep, decimal):
 	chn['DMR ID'] = rep['DMR ID']
 	if('FM Bandwidth' in rep):
 		# ROW has 'FM Bandwidth' in response
-		chn['Bandwidth (kHz)'] = rep['FM Bandwidth'].replace('.', ',').replace(' kHz', '') if (not rep['FM Bandwidth'] is None) else None
+		chn['Bandwidth (kHz)'] = rep['FM Bandwidth'].replace(',', '.').replace(' kHz', '') if (not rep['FM Bandwidth'] is None) else None
 	else:
 		chn['Bandwidth (kHz)'] = '25' # NA uses wide band for Analog, overwrite digital narrow band when creating csv	
 
