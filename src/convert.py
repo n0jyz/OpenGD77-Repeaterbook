@@ -233,7 +233,7 @@ def main(argv):
 
 	channelTypesDict = {}
 	channels = []
-	channelHeading = ['Channel Number', 'Channel Name', 'Channel Type', 'Rx Frequency', 'Tx Frequency', 'Bandwidth (kHz)', 'Colour Code', 'Timeslot', 'Contact', 'TG List', 'DMR ID', 'TS1_TA_Tx ID', 'TS2_TA_Tx ID', 'RX Tone', 'TX Tone', 'Squelch', 'Power', 'Rx Only', 'Zone Skip', 'All Skip', 'TOT', 'VOX', 'No Beep', 'No Eco', 'APRS', 'Latitude', 'Longitude']
+	channelHeading = ['Channel Number', 'Channel Name', 'Channel Type', 'Rx Frequency', 'Tx Frequency', 'Bandwidth (kHz)', 'Colour Code', 'Timeslot', 'Contact', 'TG List', 'DMR ID', 'TS1_TA_Tx ID', 'TS2_TA_Tx ID', 'RX Tone', 'TX Tone', 'Squelch', 'Power', 'Rx Only', 'Zone Skip', 'All Skip', 'TOT', 'VOX', 'No Beep', 'No Eco', 'APRS', 'Latitude', 'Longitude', 'Use Location']
 	rowct = 0
 	maxZoneChannels = 80 # OpenGD77 supports 80 channels per Zone
 	for zoneName in myZones:
