@@ -68,7 +68,7 @@ def get_repeaters(url, email):
 			for rep in repeaters:
 				#  TODO: Add Digital channels back, excluding them for now
 				# if(rep['Operational Status'] == 'On-air' and (rep['DMR'] == 'No' or rep['FM Analog'] == 'Yes')):
-				if(rep['Operational Status'] == 'On-air' and rep['Use'] == 'OPEN' and (rep['DMR'] == 'Yes' or rep['FM Analog'] == 'Yes')):
+				if(rep['Operational Status'] == 'On-air' and rep['Use'] == 'OPEN' and (rep['DMR'] == 'Yes' or rep['FM Analog'] == 'Yes') and (rep['PL'] != 'Restricted' or rep['TSQ'] != 'Restricted')):
 					# print(rep)
 					result.append(rep)
 			return result
@@ -77,7 +77,7 @@ def get_repeaters(url, email):
 		return None
 
 #Map repeaterbook entry to GD77 channel format
-def map_rep2chn(rep, decimal):
+def map_rep2chn(rep, decimal, useLocation):
 	chn = {}
 	chn['Contact'] = 'None'
 	chn['DMR ID'] = 'None'
@@ -99,6 +99,7 @@ def map_rep2chn(rep, decimal):
 #	chn[''] = rep['Region']
 #	chn[''] = rep['State']
 #	chn[''] = rep['Country']
+	chn['Use Location'] = useLocation
 
 	if (decimal == 'Comma'):
 		# EU likes commas over periods
@@ -183,7 +184,8 @@ def main(argv):
 	myZones = data['Zones']
 	mode = data['Mode']
 	decimal = data['Decimal']
-	email = data['email']
+	email = data['Email']
+	useLocation = data['UseLocation']
 	myQuery = "https://www.repeaterbook.com/api/"
 
 
@@ -248,7 +250,7 @@ def main(argv):
 			dist = distance(float(row['Lat']), float(row['Long']), myZones[zoneName]['Latitude'], myZones[zoneName]['Longitude'])
 			if(dist > myZones[zoneName]['MaxDistance']):
 				continue
-			chn = map_rep2chn(row, decimal)
+			chn = map_rep2chn(row, decimal, useLocation)
 			rowct += 1
 			chn['Channel Number'] = rowct
 			# fill empty columns
